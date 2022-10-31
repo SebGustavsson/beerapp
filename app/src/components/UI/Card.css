@@ -1,0 +1,15 @@
+.card {
+  border: 1px solid #111;
+  border-radius: 10px;
+  margin-top: 10px;
+  max-width: 50%;
+  background: #fff;
+  min-height: 50px;
+}
+
+
+@media screen and (max-width: 550px) {
+  .card {
+    max-width: 90%;
+  }
+}

@@ -1,4 +1,11 @@
-.bodywrapper {
-  height: 100vh;
+body {
   background: rgb(85, 78, 78);
+}
+
+.bodywrapper {
+  margin: 0px auto;
+}
+
+.bodywrapper > * {
+  margin: 0px auto;
 }

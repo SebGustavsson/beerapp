@@ -1,7 +1,8 @@
 import "./App.css";
 import axios from "axios";
-import { useState, useRef } from "react";
-import SearchForm from "./components/UI/SearchForm";
+import Item from "./components/Item";
+import { useState } from "react";
+import SearchForm from "./components/SearchForm";
 
 export default function App() {
   const [searchValue, setSearchValue] = useState();
@@ -19,45 +20,23 @@ export default function App() {
 
   //Varje gång submit noll
   return (
-    <div className="App">
+    <div className="bodywrapper">
       <SearchForm
         onSubmitSearchValue={saveSearchValueHandler}
         onSearch={fetchData}
         url={url}
       />
-
-      <ul>
-        {data?.map((beer, index) => {
-          return (
-            <Item
-              key={index}
-              name={beer.name}
-              abv={beer.abv}
-              description={beer.description}
-              foodpairing={beer.food_pairing}
-            />
-          );
-        })}
-      </ul>
+      {data?.map((beer, index) => {
+        return (
+          <Item
+            key={index}
+            name={beer.name}
+            abv={beer.abv}
+            description={beer.description}
+            foodpairing={beer.food_pairing}
+          />
+        );
+      })}
     </div>
   );
 }
-
-const Item = (props) => {
-  return (
-    <>
-      <li>Name: {props.name}</li>
-      <li>Alcohol content: {props.abv}%</li>
-      <details>
-        <summary>Description</summary>
-        {props.description}
-      </details>
-      <details>
-        <summary>Food pairing</summary>
-        {props.foodpairing.map((pairing) => {
-          return pairing;
-        })}
-      </details>
-    </>
-  );
-};
