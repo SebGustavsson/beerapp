@@ -1,4 +1,4 @@
-.card {
+.componentCard {
   border: 1px solid #111;
   border-radius: 10px;
   margin-top: 10px;
@@ -9,7 +9,7 @@
 
 
 @media screen and (max-width: 550px) {
-  .card {
+  .componentCard {
     max-width: 90%;
   }
 }
