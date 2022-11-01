@@ -56,10 +56,9 @@ export default function App() {
       <ReactPaginate
         previousLabel={"Previous"}
         nextLabel={"Next"}
-        breakLabel={"..."}
-        pageCount={3}
+        pageCount={4}
         marginPagesDisplayed={2}
-        pageRangeDisplayed={3}
+        pageRangeDisplayed={5}
         onPageChange={pageClickHandler}
         containerClassName={
           data.length == 0 || data.length < 10
