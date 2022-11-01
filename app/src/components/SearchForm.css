@@ -1,7 +1,7 @@
 .searchform {
   display: flex;
   justify-content: center;
-  margin-top: 15px;
+  padding: 10px;
 }
 
 .searchform button {

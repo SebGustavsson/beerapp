@@ -9,3 +9,7 @@ body {
 .bodywrapper > * {
   margin: 0px auto;
 }
+
+.bodywrapper:last-child {
+  margin-bottom: 15px;
+}

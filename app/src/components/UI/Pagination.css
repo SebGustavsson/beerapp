@@ -1,0 +1,7 @@
+.pagination {
+  margin-bottom: -15px;
+}
+
+.pagination.hidden {
+  display: none;
+}

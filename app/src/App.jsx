@@ -3,11 +3,13 @@ import axios from "axios";
 import { useState } from "react";
 import SearchForm from "./components/SearchForm";
 import ReactPaginate from "react-paginate";
-import Card from "./components/UI/Card";
+import Item from "./components/Item";
+import "./components/UI/Pagination.css";
 
 export default function App() {
   const [searchValue, setSearchValue] = useState();
   const [page, setPage] = useState();
+  const [error, setError] = useState();
   const saveSearchValueHandler = (enteredSearchValue) => {
     setSearchValue(enteredSearchValue);
   };
@@ -17,6 +19,13 @@ export default function App() {
   const [data, setData] = useState([]);
   const fetchData = async (url) => {
     return await axios.get(url).then((res) => {
+      if (res.data.length == 0) {
+        setError("Can't find any beers. Please enter a valid beer");
+        return error;
+      } else {
+        setError();
+        console.log(error);
+      }
       setData(res.data);
     });
   };
@@ -48,11 +57,15 @@ export default function App() {
         previousLabel={"Previous"}
         nextLabel={"Next"}
         breakLabel={"..."}
-        pageCount={6}
+        pageCount={3}
         marginPagesDisplayed={2}
         pageRangeDisplayed={3}
         onPageChange={pageClickHandler}
-        containerClassName={"pagination justify-content-center"}
+        containerClassName={
+          data.length == 0 || data.length < 10
+            ? "pagination hidden"
+            : "pagination justify-content-center"
+        }
         pageClassName={"page-item"}
         pageLinkClassName={"page-link"}
         previousClassName={"page-item"}
@@ -62,7 +75,13 @@ export default function App() {
         breakLinkClassName={"page-link"}
         breakClassName={"page-item"}
         activeClassName={"active"}
+        renderOnZeroPageCount={null}
       />
+      {typeof error === "string" && (
+        <div className="card">
+          <h3>{error}</h3>
+        </div>
+      )}
       {data?.map((beer, index) => {
         return (
           <Item
@@ -77,23 +96,3 @@ export default function App() {
     </div>
   );
 }
-const Item = (props) => {
-  return (
-    <Card>
-      <ul>
-        <li>Name: {props.name}</li>
-        <li>Alcohol content: {props.abv}%</li>
-        <details>
-          <summary>Description</summary>
-          {props.description}
-        </details>
-        <details>
-          <summary>Food pairing</summary>
-          {props.foodpairing.map((pairing) => {
-            return `${pairing}, `;
-          })}
-        </details>
-      </ul>
-    </Card>
-  );
-};

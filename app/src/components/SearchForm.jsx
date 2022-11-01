@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Card from "./UI/Card";
 import "./SearchForm.css";
 const _ = require("lodash");
 
@@ -24,14 +23,28 @@ const SearchForm = (props) => {
   //Only update state on submit
 
   return (
-    <Card>
-      <form className="searchform" onSubmit={submitHandler}>
-        <input placeholder="Search" type="text" onChange={valueChangeHandler} />
-        <button type="submit" onClick={handleClick}>
-          Search
-        </button>
-      </form>
-    </Card>
+    <div className="card" style={{ marginBottom: 15 }}>
+      <div className="row">
+        <div className="col">
+          <form className="searchform" onSubmit={submitHandler}>
+            <input
+              className="form-control"
+              placeholder="Search for beer"
+              type="text"
+              onChange={valueChangeHandler}
+              aria-label="Search for beer"
+            />
+            <button
+              className="btn btn-primary"
+              type="submit"
+              onClick={handleClick}
+            >
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 
