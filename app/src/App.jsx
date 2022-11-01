@@ -19,10 +19,12 @@ export default function App() {
   const [data, setData] = useState([]);
   const fetchData = async (url) => {
     return await axios.get(url).then((res) => {
+      // check if get request received an empty array, in that case set error constant to an error message
       if (res.data.length == 0) {
         setError("Can't find any beers. Please enter a valid beer");
         return error;
       } else {
+        // reset state of error constant in case user searches again
         setError();
         console.log(error);
       }
@@ -40,12 +42,12 @@ export default function App() {
   };
 
   const pageClickHandler = async (data) => {
+    // have to increment current page by 1 otherwise currentpage is 1 number too small
     let currentPage = data.selected + 1;
     const pageServer = await fetchNextPage(currentPage);
     setPage(pageServer);
   };
 
-  //Varje gång submit noll
   return (
     <div className="bodywrapper">
       <SearchForm
@@ -76,8 +78,9 @@ export default function App() {
         activeClassName={"active"}
         renderOnZeroPageCount={null}
       />
+      {/* check if error constant was assigned a string value in fetchData() get request and if so, show error message */}
       {typeof error === "string" && (
-        <div className="card">
+        <div className="card" style={{ marginTop: 20 }}>
           <h3>{error}</h3>
         </div>
       )}
