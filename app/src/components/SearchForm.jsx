@@ -3,7 +3,6 @@ import "./SearchForm.css";
 const _ = require("lodash");
 
 const SearchForm = (props) => {
-  // submitHandler
   const [searchTerm, setSearchTerm] = useState();
   const submitHandler = (event) => {
     props.onSearch(props.url);
@@ -11,6 +10,7 @@ const SearchForm = (props) => {
   };
 
   const valueChangeHandler = (event) => {
+    //call snakecase function due to api query string wanting underscore instead of space
     const targetValue = _.snakeCase(event.target.value);
     setSearchTerm(targetValue);
     props.onSubmitSearchValue(searchTerm);
@@ -19,8 +19,6 @@ const SearchForm = (props) => {
   const handleClick = () => {
     props.onSearch(props.url);
   };
-
-  //Only update state on submit
 
   return (
     <div className="card" style={{ marginBottom: 15 }}>

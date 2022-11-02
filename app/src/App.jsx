@@ -13,14 +13,13 @@ export default function App() {
   const saveSearchValueHandler = (enteredSearchValue) => {
     setSearchValue(enteredSearchValue);
   };
-  //seems like query is ignoring dashes
   const pageLimit = 10;
   const url = `https://api.punkapi.com/v2/beers?beer_name=${searchValue}&per_page=${pageLimit}`;
   const [data, setData] = useState([]);
   const fetchData = async (url) => {
     return await axios.get(url).then((res) => {
       // check if get request received an empty array, in that case set error constant to an error message
-      if (res.data.length == 0) {
+      if (res.data.length === 0) {
         setError("Can't find any beers. Please enter a valid beer");
         return error;
       } else {
@@ -58,12 +57,12 @@ export default function App() {
       <ReactPaginate
         previousLabel={"Previous"}
         nextLabel={"Next"}
-        pageCount={4}
+        pageCount={3}
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         onPageChange={pageClickHandler}
         containerClassName={
-          data.length == 0 || data.length < 10
+          data.length === 0 || data.length < 10
             ? "pagination hidden"
             : "pagination justify-content-center"
         }
