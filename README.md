@@ -1,1 +1,1 @@
-Clone, make sure you have node.js installed and run npm install. Open /app and then launch by running npm start.
+Make sure you have node.js installed. Open /app, run npm install & launch with npm start
