@@ -85,13 +85,16 @@ export default function App() {
       )}
       {data?.map((beer, index) => {
         return (
-          <Item
-            key={index}
-            name={beer.name}
-            abv={beer.abv}
-            description={beer.description}
-            foodpairing={beer.food_pairing}
-          />
+          // only render each beer if no error string was assigned in fetchData
+          typeof error !== "string" && (
+            <Item
+              key={index}
+              name={beer.name}
+              abv={beer.abv}
+              description={beer.description}
+              foodpairing={beer.food_pairing}
+            />
+          )
         );
       })}
     </div>
